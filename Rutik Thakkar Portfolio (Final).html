@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravi Thakkar | AI Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #1a1f3a;
+            --text-primary: #ffffff;
+            --text-secondary: #b8c5d6;
+            --text-tertiary: #8892a8;
+            --border-color: #2d3a52;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #ff6b9d;
+            --accent-gold: #ffd700;
+            --accent-green: #00ff88;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(10, 14, 39, 0.9), rgba(26, 31, 58, 0.92));
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+            padding: 0.9rem 2.5rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1250px;
+            margin: 0 auto;
+            gap: 1.5rem;
+        }
+
+        nav .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0 auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 0;
+            transition: all 0.25s ease;
+            font-size: 1.2rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .nav-toggle span::before,
+        .nav-toggle span::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 18px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: transform 0.25s ease;
+        }
+
+        .nav-toggle span::before {
+            top: -6px;
+        }
+
+        .nav-toggle span::after {
+            top: 6px;
+        }
+
+        .nav-toggle.active span {
+            background: transparent;
+        }
+
+        .nav-toggle.active span::before {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .nav-toggle.active span::after {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.96rem;
+            transition: color 0.3s ease, opacity 0.2s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-primary);
+            opacity: 0.85;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .nav-cta {
+            padding: 0.55rem 1.2rem;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(255, 107, 157, 0.18));
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 0.92rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.25);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(120% 140% at 20% 20%, rgba(0, 212, 255, 0.15), transparent 40%), radial-gradient(100% 120% at 80% 0%, rgba(255, 107, 157, 0.12), transparent 45%);
+        }
+
+        .hero .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .hero-card {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            background: linear-gradient(135deg, rgba(74, 36, 128, 0.85), rgba(27, 17, 71, 0.9));
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(12px);
+            align-items: center;
+        }
+
+        .hero-left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: start;
+            padding-top: 0.5rem;
+        }
+
+        .profile-photo {
+            width: clamp(180px, 22vw, 220px);
+            height: clamp(180px, 22vw, 220px);
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2.5px solid rgba(0, 212, 255, 0.9);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 212, 255, 0.2);
+            background: var(--bg-secondary);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-right .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.9rem;
+            background: rgba(0, 255, 136, 0.12);
+            border: 1px solid rgba(0, 255, 136, 0.4);
+            color: var(--text-primary);
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            width: fit-content;
+        }
+
+        .availability-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 0 6px rgba(0, 255, 136, 0.18);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.6px;
+            color: var(--text-primary);
+        }
+
+        .hero h1 .wave {
+            display: inline-block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            margin-bottom: 2rem;
+            max-width: 100%;
+        }
+
+        .hero-subtitle strong {
+            color: var(--accent-primary);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0;
+        }
+
+        .btn {
+            padding: 0.9rem 2.2rem;
+            border: none;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            box-shadow: 0 10px 28px rgba(0, 212, 255, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 14px 34px rgba(0, 212, 255, 0.45);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-1px);
+            border-color: rgba(0, 212, 255, 0.35);
+        }
+
+        /* Tech Stack Section */
+        .tech-stack {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(255, 107, 157, 0.05) 100%);
+        }
+
+        .tech-stack .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            align-items: start;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+        }
+
+        .tech-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.65rem 1rem;
+            background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 45%), linear-gradient(135deg, rgba(74, 36, 128, 0.65), rgba(27, 17, 71, 0.7));
+            border-radius: 999px;
+            border: 1px solid rgba(0, 212, 255, 0.18);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+            transition: all 0.25s ease;
+            color: var(--text-primary);
+        }
+
+        .tech-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 14px 32px rgba(0, 212, 255, 0.15);
+        }
+
+        .tech-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.08);
+            font-size: 1.2rem;
+        }
+
+        .tech-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* Work Experience */
+        .experience {
+            padding: 6rem 2rem;
+            background: var(--bg-primary);
+        }
+
+        .experience .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .experience h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.6px;
+        }
+
+        .experience h2 .accent {
+            color: var(--accent-primary);
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 2.5rem;
+            padding-left: 28px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 212, 255, 0.4), rgba(255, 107, 157, 0.2));
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.6rem;
+            position: relative;
+            padding: 1.2rem 1.2rem 1.2rem 1.6rem;
+            border-radius: 12px;
+            background: rgba(26, 31, 58, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+            margin-bottom: 1.2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 24px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-secondary);
+            box-shadow: 0 0 0 6px rgba(255, 107, 157, 0.25);
+        }
+
+        .timeline-role {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .timeline-company {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .timeline-dates {
+            font-size: 0.95rem;
+            color: var(--text-tertiary);
+        }
+
+        .timeline-desc {
+            font-size: 0.98rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 6rem 2rem;
+            background: var(--bg-primary);
+        }
+
+        .projects .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 280px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: auto;
+        }
+
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--accent-primary);
+            padding: 0.45rem 0.95rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .tech-tag:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: var(--accent-primary);
+            transform: translateY(-1px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-content {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .about-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .about-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .about-text strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .about-text em {
+            color: var(--text-primary);
+            font-style: italic;
+        }
+
+        .about-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .about-list li {
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.8rem;
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 3px solid var(--accent-primary);
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .about-list li strong {
+            color: var(--text-primary);
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .expertise-item {
+            padding: 1.5rem;
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .expertise-item:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .expertise-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .expertise-item p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* About Me Enhanced Styles (from About page) */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title .gradient-text {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--text-tertiary);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-block {
+            margin-bottom: 4rem;
+        }
+
+        .content-block h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .content-block p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+
+        .content-block ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .content-block li {
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 3px solid var(--accent-primary);
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+
+        .content-block li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .expertise-card {
+            padding: 1.8rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .expertise-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .expertise-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--accent-primary);
+        }
+
+        .expertise-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .expertise-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .expertise-card li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border: none;
+            background: none;
+            margin: 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .expertise-card li:before {
+            content: '✓';
+            color: var(--accent-green);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            color: var(--accent-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: var(--accent-primary);
+        }
+
+        .highlight-box {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 107, 157, 0.05) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .highlight-box h4 {
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p {
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 107, 157, 0.1) 100%);
+            border-radius: 8px;
+            margin-top: 4rem;
+        }
+
+        .cta-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--text-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-card {
+                grid-template-columns: 240px 1fr;
+                padding: 2.5rem;
+                gap: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav .container {
+                justify-content: space-between;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            nav.open ul {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 14, 39, 0.98);
+                padding: 1rem 1.5rem 1.5rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+            }
+
+            nav.open .nav-actions {
+                display: none;
+            }
+
+            .hero {
+                padding: 3rem 1.2rem;
+                margin-top: 60px;
+            }
+
+            .hero-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .hero-left {
+                order: 1;
+                align-self: center;
+                padding-top: 0;
+            }
+
+            .hero-right {
+                order: 2;
+                align-items: center;
+            }
+
+            .hero-right .availability {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .profile-photo {
+                width: clamp(170px, 40vw, 200px);
+                height: clamp(170px, 40vw, 200px);
+                margin: 0 auto;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .section-header {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .tech-grid {
+                justify-content: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-card {
+                min-height: auto;
+                padding: 1.5rem;
+            }
+
+            .project-title {
+                font-size: 1.15rem;
+            }
+
+            .project-description {
+                font-size: 0.9rem;
+            }
+
+            footer .container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+                margin-top: 50px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .tech-grid {
+                justify-content: center;
+                gap: 0.8rem;
+            }
+
+            .tech-icon {
+                font-size: 2rem;
+            }
+
+            .tech-name {
+                font-size: 0.75rem;
+            }
+
+            .project-title {
+                font-size: 1rem;
+            }
+
+            .project-description {
+                font-size: 0.9rem;
+            }
+
+            .project-card {
+                padding: 1.25rem;
+            }
+
+            .tech-tag {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.75rem;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.hidden {
+            display: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 3rem;
+            z-index: 2001;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+            background: var(--border-color);
+        }
+
+        .project-detail-header {
+            margin-bottom: 2rem;
+        }
+
+        .project-detail-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            color: var(--accent-primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-detail-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-detail-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .project-detail-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-detail-section ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .project-detail-section li {
+            padding: 0.8rem;
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .project-detail-section li:before {
+            content: '✓';
+            color: var(--accent-primary);
+            font-weight: 700;
+            min-width: 20px;
+        }
+
+        .project-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .metric-box {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 157, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .tech-stack-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tech-stack-item {
+            padding: 0.6rem 1.2rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 6px;
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+                max-height: 90vh;
+            }
+
+            .project-detail-title {
+                font-size: 1.6rem;
+            }
+
+            .project-detail-section ul {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-box {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <!-- <div class="logo">Rutik</div> -->
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+            </button>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#stack">Stack</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a class="nav-cta" href="mailto:ravithakkar2990@gmail.com">Email Me</a>
+                <a class="nav-cta" href="https://www.linkedin.com/in/ravi-thakkar-149a52224/" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-card">
+                <div class="hero-left">
+                    <div class="profile-photo">
+                        <img src="profile_pic.JPEG" onerror="this.onerror=null;this.src='profile_pic.jpg';" alt="Ravi Thakkar profile photo">
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <!-- <div class="availability">
+                        <span class="availability-dot"></span>
+                        Available for work
+                    </div> -->
+                    <h1>Ravi Thakkar
+                     <!-- <span class="wave">👋</span> -->
+                     </h1>
+                    <p class="hero-subtitle">
+                        <strong>AI/ML Developer | Python & GenAI Expert | Empowering Startups to Build AI-Driven Business Solutions</strong>
+                        <br><br>
+                        I'm a <strong>Full-Stack & AI/ML Developer with 6.5+ years of experience</strong> specializing in Python, Generative AI, and Machine Learning. I build intelligent systems like chatbots and data models that help businesses automate processes and make data-driven decisions. With expertise in <strong>Angular, React, FastAPI, and Python</strong>, I create scalable web applications that merge cutting-edge AI with seamless user experiences. From LLM integrations and RAG systems to end-to-end platform architecture—I deliver solutions that work, scale, and drive real business impact.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" onclick="window.location.href='mailto:ravithakkar2990@gmail.com'">Contact Me</button>
+                        <button class="btn btn-secondary" onclick="window.open('https://www.linkedin.com/in/ravi-thakkar-149a52224/','_blank','noreferrer')">LinkedIn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2>Work <span class="accent">Experience</span></h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-role">AI/ML Developer | Python & GenAI Specialist</div>
+                    <div class="timeline-company">Freelance | Self-Employed</div>
+                    <div class="timeline-dates">May 2024 - Present (1 yr 8 mos) · Remote</div>
+                    <p class="timeline-desc">
+                        Building business-focused AI applications to help startups integrate machine learning and GenAI into their products and services. Specializing in Python-based AI solutions, generative AI technologies, and machine learning implementations that drive real business value.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-role">Full Stack Engineer</div>
+                    <div class="timeline-company">Self Employed</div>
+                    <div class="timeline-dates">Apr 2018 - Present (7 yrs 9 mos) · Remote</div>
+                    <p class="timeline-desc">
+                        Developed and maintained full-stack web applications using Angular for dynamic front-end interfaces and .NET Core for robust back-end services. Designed responsive, user-friendly interfaces leveraging Angular components, routing, and services while optimizing for performance and user experience. Built and deployed RESTful APIs with ASP.NET Core, integrating SQL Server databases to enhance functionality across web and mobile applications. Collaborated with cross-functional teams including UI/UX designers, product managers, and QA engineers to deliver high-quality, scalable solutions. Optimized SQL queries using Entity Framework and SQL Server for fast and reliable database operations. Integrated automated testing with JUnit, Karma, and Mocha to ensure code stability and reduce production issues. Participated in Agile methodologies including sprint planning, daily stand-ups, and continuous improvement cycles. Deployed applications on Azure to improve scalability, performance, and security. Currently transitioning focus to AI/ML technologies, integrating AI-driven capabilities like chatbots and predictive analytics into web applications.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack" id="stack">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2>Tech Stack</h2>
+                </div>
+                <div>
+                    <p>A comprehensive toolkit of AI/ML frameworks, modern web technologies, and automation tools I leverage to build intelligent, scalable solutions that drive business value.</p>
+                </div>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">📄</div>
+                    <div class="tech-name">HTML 5</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🎨</div>
+                    <div class="tech-name">CSS</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚡</div>
+                    <div class="tech-name">JavaScript</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📘</div>
+                    <div class="tech-name">TypeScript</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔺</div>
+                    <div class="tech-name">Angular</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚛️</div>
+                    <div class="tech-name">React</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🟢</div>
+                    <div class="tech-name">Node.js</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🐍</div>
+                    <div class="tech-name">Python</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚙️</div>
+                    <div class="tech-name">FastAPI</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🎯</div>
+                    <div class="tech-name">Tailwind</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🗄️</div>
+                    <div class="tech-name">MongoDB</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">☁️</div>
+                    <div class="tech-name">AWS</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔷</div>
+                    <div class="tech-name">Azure</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🧠</div>
+                    <div class="tech-name">LangChain</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🌊</div>
+                    <div class="tech-name">LangFlow</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔗</div>
+                    <div class="tech-name">n8n</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📊</div>
+                    <div class="tech-name">FAISS</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">💠</div>
+                    <div class="tech-name">.NET Core</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2>Featured Projects</h2>
+                </div>
+                <div>
+                    <p>AI-Powered Solutions That Drive Real Business Impact. From intelligent automation platforms to LLM-integrated applications, these projects showcase how I combine cutting-edge AI/ML technologies with robust full-stack architecture to deliver production-ready solutions.</p>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card" onclick="openProjectDetail('compliance-management')" style="cursor: pointer;">
+                    <h3 class="project-title">Internal Compliance Tool</h3>
+                    <p class="project-description">Enterprise micro-frontend platform with Angular 19, DevExtreme dashboards, Material UI, and full Jest + Playwright automation for zero-defect releases.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Angular 19</span>
+                        <span class="tech-tag">Material</span>
+                        <span class="tech-tag">DevExtreme</span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProjectDetail('real-estate')" style="cursor: pointer;">
+                    <h3 class="project-title">AI-Powered Real Estate Platform</h3>
+                    <p class="project-description">Intelligent property marketplace with AI-driven recommendations, automated valuation models, and personalized search. Increased conversions by 45% through ML-powered insights.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">AI/ML</span>
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProjectDetail('hiring-automation')" style="cursor: pointer;">
+                    <h3 class="project-title">AI Hiring Automation</h3>
+                    <p class="project-description">LLM-powered recruitment platform with intelligent resume analysis, semantic skill matching, and automated candidate ranking. Reduced hiring time by 75% using LangChain and AI-driven workflows.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Angular</span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProjectDetail('employee-training')" style="cursor: pointer;">
+                    <h3 class="project-title">AI-Enhanced Learning Platform</h3>
+                    <p class="project-description">Intelligent learning management system with AI-powered personalized learning paths, adaptive content recommendations, and ML-driven progress analytics. Achieved 85% course completion rate.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">AI/ML</span>
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProjectDetail('recruitment-platform')" style="cursor: pointer;">
+                    <h3 class="project-title">Recruitment Platform</h3>
+                    <p class="project-description">Hiring and recruitment platform for engineers and recruiters with modular frontend architecture.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProjectDetail('hrms')" style="cursor: pointer;">
+                    <h3 class="project-title">HR Management System</h3>
+                    <p class="project-description">Human Resource Management System for managing employee lifecycle, timesheets, leave, and payroll with workflow automation.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProjectDetail('quick-commerce')" style="cursor: pointer;">
+                    <h3 class="project-title">Quick Commerce App</h3>
+                    <p class="project-description">Hyperlocal quick-commerce delivery app for Android and iOS built with Ionic and Angular, featuring dynamic CMS integration.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Ionic</span>
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Detail Modal -->
+    <div id="projectModal" class="modal hidden">
+        <div class="modal-overlay" onclick="closeProjectDetail()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProjectDetail()">✕</button>
+            <div id="projectDetailContent"></div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me <span class="gradient-text">AI/ML Developer & Full Stack Engineer</span></h2>
+            <p class="section-subtitle">Specializing in Python, Generative AI, and Machine Learning to build intelligent systems that automate processes and enable data-driven decision making.</p>
+
+            <!-- Who I Am -->
+            <div class="content-block">
+                <h3>🎯 Who I Am</h3>
+                <p>I'm an <strong>AI/ML Developer specializing in Python, Generative AI, and Machine Learning</strong> with <strong>6.5+ years of professional experience</strong> building intelligent systems that help businesses automate processes and make data-driven decisions. With a strong background in <strong>Full Stack Development (Angular & .NET)</strong>, I bring expertise in creating scalable web applications that merge cutting-edge AI with seamless user experiences.</p>
+                <p>My career reflects the rapid evolution of the tech industry. I started as a full-stack developer mastering <strong>Angular, React, and .NET Core</strong>, but recognized that the future belonged to intelligent systems. Over the past few years, I've evolved into a comprehensive <strong>AI/ML specialist</strong> who understands the entire ML pipeline—from LLM integration and RAG systems to production deployment. Now working as a self-employed developer, I'm focused on empowering startups to build AI-driven business solutions.</p>
+            </div>
+
+            <!-- AI & ML Specialization -->
+            <div class="content-block">
+                <h3>🤖 AI & Machine Learning Specialization</h3>
+                        <p>I specialize in designing and deploying <strong>production-ready AI/ML solutions</strong> that help startups and businesses integrate machine learning and GenAI into their products, automate processes, and make data-driven decisions with measurable ROI.</p>
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <h4>💬 LLM Integration & Frameworks</h4>
+                        <p>I architect complex chains and agents using cutting-edge frameworks to orchestrate multi-step reasoning workflows.</p>
+                        <ul>
+                            <li><strong>LangChain:</strong> Complex chains, agents with tool use, custom memory management</li>
+                            <li><strong>LangGraph:</strong> Stateful workflows, agentic systems, human-in-the-loop capabilities</li>
+                            <li><strong>OpenAI GPT Models:</strong> GPT-4 for reasoning, token optimization, prompt engineering at scale</li>
+                            <li><strong>Embeddings:</strong> Semantic search, similarity matching across vast collections</li>
+                        </ul>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>📚 Retrieval-Augmented Generation (RAG)</h4>
+                        <p>End-to-end RAG pipelines combining LLMs with domain-specific knowledge for intelligent document processing.</p>
+                        <ul>
+                            <li><strong>Vector Databases:</strong> FAISS, Pinecone, Chroma for semantic search</li>
+                            <li><strong>Advanced Chunking:</strong> Context-aware document segmentation and embedding refinement</li>
+                            <li><strong>Production Pipelines:</strong> Document Q&A, contract analysis, code explanation engines</li>
+                        </ul>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>⚡ Intelligent Automation & Workflow Orchestration</h4>
+                        <p>Building AI-powered automation systems that replace manual workflows, reduce operational overhead, and enable intelligent decision-making.</p>
+                        <ul>
+                            <li><strong>Document Processing:</strong> 1000+ docs/hour with OCR, CV parsing, and semantic analysis</li>
+                            <li><strong>Code Review Automation:</strong> LLM-powered PR analysis integrated into CI/CD pipelines</li>
+                            <li><strong>Recruitment AI:</strong> 60% reduction in manual screening through intelligent candidate matching</li>
+                            <li><strong>Workflow Orchestration:</strong> n8n for multi-step automation, API integrations, and AI-enabled processes</li>
+                            <li><strong>Chatbots & Conversational AI:</strong> Intelligent assistants for customer support and internal automation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Tools & Frameworks -->
+            <div class="content-block">
+                <h3>🛠️ AI Tools & Frameworks Arsenal</h3>
+                <div class="tech-list">
+                    <span class="tech-badge">LangChain</span>
+                    <span class="tech-badge">LangGraph</span>
+                    <span class="tech-badge">OpenAI API</span>
+                    <span class="tech-badge">FAISS</span>
+                    <span class="tech-badge">Pinecone</span>
+                    <span class="tech-badge">Chroma</span>
+                    <span class="tech-badge">LlamaIndex</span>
+                    <span class="tech-badge">HuggingFace</span>
+                    <span class="tech-badge">Claude API</span>
+                    <span class="tech-badge">Ollama</span>
+                    <span class="tech-badge">n8n</span>
+                    <span class="tech-badge">RAGAS</span>
+                    <span class="tech-badge">Prompt Engineering</span>
+                </div>
+            </div>
+
+            <!-- Full-Stack Architecture & Engineering -->
+            <div class="content-block">
+                <h3>💻 Full-Stack Architecture & Engineering</h3>
+                <p>My AI/ML expertise is complemented by strong full-stack capabilities, enabling me to build end-to-end solutions that seamlessly integrate intelligent systems with modern web architectures:</p>
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <h4>Backend Architecture</h4>
+                        <ul>
+                            <li><strong>Python & FastAPI:</strong> High-performance async APIs with WebSocket support</li>
+                            <li><strong>Node.js & Express:</strong> Robust backend services and real-time systems</li>
+                            <li><strong>Microservices:</strong> Scalable, independently deployable services</li>
+                            <li><strong>GraphQL & REST:</strong> Flexible, efficient API contracts</li>
+                        </ul>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Frontend Excellence</h4>
+                        <ul>
+                            <li><strong>Angular (2-20+):</strong> Standalone components, signals, RxJS mastery, micro-frontend architecture</li>
+                            <li><strong>React (16-18):</strong> Hooks, Context API, Redux, Material-UI, Tailwind</li>
+                            <li><strong>TypeScript:</strong> Strong typing, interface-driven development</li>
+                            <li><strong>Responsive Design:</strong> Flawless mobile, tablet, desktop experience</li>
+                            <li><strong>Performance:</strong> Code splitting, lazy loading, optimization</li>
+                        </ul>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Data & Infrastructure</h4>
+                        <ul>
+                            <li><strong>Databases:</strong> PostgreSQL, MongoDB, Redis caching</li>
+                            <li><strong>Vector DBs:</strong> FAISS, Pinecone, Chroma for AI workloads</li>
+                            <li><strong>Docker & Kubernetes:</strong> Container orchestration at scale</li>
+                            <li><strong>Cloud Platforms:</strong> AWS, Azure, GCP deployment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-World Impact -->
+            <div class="content-block">
+                <h3>🌟 Real-World Impact: Projects That Matter</h3>
+                <p>Each project demonstrates the convergence of AI expertise and full-stack architecture:</p>
+                <div class="highlight-box">
+                    <h4>AI-Powered Code Review System</h4>
+                    <p>LLM-driven platform analyzing merge requests, providing instant code feedback, security recommendations, and performance suggestions. Integrated directly into CI/CD pipelines for continuous, autonomous code quality assurance.</p>
+                </div>
+                <div class="highlight-box">
+                    <h4>Intelligent Document Processing Platform</h4>
+                    <p>Processing <strong>1000+ documents daily</strong> extracting data from contracts, invoices, PDFs through OCR and AI analysis. The system classifies documents, routes them intelligently, and sends notifications. Built with Python, FastAPI, and n8n orchestration.</p>
+                </div>
+                <div class="highlight-box">
+                    <h4>Automated Recruitment Platform</h4>
+                    <p>Reduced manual candidate screening from <strong>40+ hours/week to minutes</strong>. AI semantically matches candidates to positions, ranks them intelligently, and orchestrates interview scheduling all autonomously.</p>
+                </div>
+                <div class="highlight-box">
+                    <h4>Enterprise Solutions</h4>
+                    <p>E-commerce platforms, real-time social networks, cryptocurrency trading systems, and HR management platforms with sophisticated business logic and scalable architecture.</p>
+                </div>
+            </div>
+
+            <!-- Philosophy -->
+            <div class="content-block">
+                <h3>🎯 Philosophy & Approach</h3>
+                <p>I believe that <strong>great technology is invisible</strong>—it simply works. Every architectural decision is grounded in:</p>
+                <ul>
+                    <li><strong>Solving Real Problems:</strong> Technology for its own sake is meaningless. I focus on understanding business requirements and delivering solutions with measurable impact.</li>
+                    <li><strong>Scalability by Design:</strong> Systems I architect are built to scale. Whether handling increased user load or processing larger datasets, scalability is baked into architecture.</li>
+                    <li><strong>Code Quality:</strong> I maintain high standards for clean, documented, testable code. Technical debt is minimized for future maintainability.</li>
+                    <li><strong>User-Centric Design:</strong> Beyond backend brilliance, I ensure interfaces are intuitive, performant, and delightful.</li>
+                    <li><strong>Continuous Learning:</strong> In AI especially, the field moves at unprecedented pace. I stay current with LLM advancements and emerging best practices.</li>
+                </ul>
+            </div>
+
+            <!-- Current Focus -->
+            <div class="content-block">
+                <h3>🔬 Current Focus & Exploration</h3>
+                <p>As an AI/ML developer, I'm continuously exploring cutting-edge technologies to deliver innovative solutions for startups and businesses:</p>
+                <ul>
+                    <li><strong>Advanced RAG Systems:</strong> Multi-hop retrieval, self-correcting RAG, query optimization for production applications</li>
+                    <li><strong>Vector Database Optimization:</strong> Hybrid search strategies, semantic indexing, and scaling vector databases for enterprise workloads</li>
+                    <li><strong>Autonomous AI Agents:</strong> Building intelligent agents with LangChain and LangGraph that operate independently with minimal human intervention</li>
+                    <li><strong>Custom Model Fine-tuning:</strong> Training task-specific models and optimizing LLM performance for domain-specific applications</li>
+                    <li><strong>Production AI Pipelines:</strong> End-to-end ML workflows, MLOps practices, and deploying AI models at scale</li>
+                    <li><strong>GenAI Integration:</strong> Seamlessly integrating generative AI capabilities into existing business applications</li>
+                </ul>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-section">
+                <h3>🚀 Ready to Build AI-Driven Solutions?</h3>
+                <p>As a self-employed AI/ML developer, I'm open to new opportunities to integrate AI into business solutions. Whether you need intelligent chatbots, automated workflows, RAG systems, or custom ML models—I'm here to help startups and businesses leverage cutting-edge AI technologies. Let's discuss how AI can transform your operations.</p>
+                <button class="btn btn-primary" onclick="window.location.href='mailto:ravithakkar2990@gmail.com'">Get in Touch</button>
+                <button class="btn btn-primary" onclick="document.querySelector('#projects').scrollIntoView({behavior: 'smooth'})" style="background: rgba(0, 212, 255, 0.1); color: var(--accent-primary); box-shadow: none; border: 1px solid var(--accent-primary);">View My Work</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- <footer id="contact">
+        <div class="container">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">AI/ML Development</a></li>
+                    <li><a href="#">GenAI Integration</a></li>
+                    <li><a href="#">RAG Systems & LLM Apps</a></li>
+                    <li><a href="#">Full Stack Development</a></li>
+                    <li><a href="#">AI Consulting</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/ravi-thakkar-149a52224/" target="_blank" rel="noreferrer">LinkedIn</a>
+                    <a href="mailto:ravithakkar2990@gmail.com">Email</a>
+                    <a href="#">GitHub</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+        </div>
+     
+    </footer> -->
+
+    <script>
+        // Project details data
+        const projectsData = {
+            'compliance-management': {
+                title: 'Internal Compliance Tool',
+                badge: 'Micro-frontend Platform',
+                description: 'Enterprise compliance hub built with Angular 19 + DevExtreme dashboards, Material UI, and hardened with Jest unit tests and Playwright E2E for reliable releases.',
+                metrics: [
+                    { value: '5,000+', label: 'Employees Supported' },
+                    { value: '90%', label: 'Unit Test Coverage' },
+                    { value: '95%', label: 'On-time Sprint Delivery' }
+                ],
+                overview: 'A sophisticated micro-frontend platform that centralizes internal compliance for officers, HR, and administrators. The system delivers DevExtreme analytics, role-based access control, audit logging, and export-ready reporting while adhering to strict coding standards and CI/CD quality gates.',
+                features: [
+                    'Micro-frontend modules with clear contracts and shared libraries',
+                    'DevExtreme data grids, charts, and drill-down analytics',
+                    'Role-based access control with guarded routing and permissions',
+                    'Automated audit logging, session handling, and secure data flows',
+                    'Lazy-loaded feature modules with bundle size optimization',
+                    'Custom reports with PDF/Excel export and real-time dashboards',
+                    'Jest unit suite plus Playwright E2E and integration testing pipeline'
+                ],
+                technologies: ['Angular 19', 'Angular Material', 'DevExtreme', 'TypeScript', 'SCSS', 'Jest', 'Playwright', 'Testing Library', 'Module Federation', 'CI/CD'],
+                myRole: 'Senior Frontend Developer',
+                responsibilities: [
+                    'Defined frontend coding standards and documentation for the platform',
+                    'Built independently deployable micro-frontend modules and shared libraries',
+                    'Developed reusable Material + DevExtreme components and secure routing guards',
+                    'Created Jest unit tests and Playwright E2E suites to sustain 90%+ coverage',
+                    'Optimized change detection, lazy loading, and bundle sizes for faster loads',
+                    'Led requirement grooming, sprint planning, and stakeholder demos across 12+ sprints'
+                ]
+            },
+            'real-estate': {
+                title: 'AI-Powered Real Estate Hub',
+                badge: 'SaaS Platform',
+                description: 'Intelligent property marketplace with AI-driven recommendations, virtual tours, and automated valuation. Increased conversions by 45%.',
+                metrics: [
+                    { value: '500K+', label: 'Properties' },
+                    { value: '45%', label: 'Conversion Lift' },
+                    { value: '2M+', label: 'Monthly Visits' }
+                ],
+                overview: 'A modern intelligent real estate marketplace powered by AI algorithms that provide personalized property recommendations and advanced search capabilities.',
+                features: [
+                    'AI-powered property recommendations',
+                    'Virtual property tours with WebGL',
+                    'Automated property valuation',
+                    'Advanced search and filtering',
+                    'Neighborhood analytics',
+                    'Agent network integration'
+                ],
+                technologies: ['Angular', 'AI/ML', 'WebGL', 'AWS', 'TypeScript', 'Python'],
+                myRole: 'Full Stack Engineer',
+                responsibilities: [
+                    'Implemented AI recommendation engine',
+                    'Built virtual tour viewer with WebGL',
+                    'Optimized search performance',
+                    'Managed AWS infrastructure',
+                    'Improved conversion rates by 45%'
+                ]
+            },
+            'hiring-automation': {
+                title: 'Intelligent Hiring Engine',
+                badge: 'AI Platform',
+                description: 'LLM-powered recruitment with resume analysis, skills matching, and candidate ranking. Reduced hiring time from 30 days to 7 days.',
+                metrics: [
+                    { value: '75%', label: 'Faster Hiring' },
+                    { value: '500+', label: 'Recruits/Month' },
+                    { value: '92%', label: 'Match Accuracy' }
+                ],
+                overview: 'An advanced AI-powered hiring platform that leverages Large Language Models to automate resume screening, skills assessment, and candidate matching.',
+                features: [
+                    'Resume parsing and analysis using LLM',
+                    'Skill matching with ML algorithms',
+                    'Automated candidate ranking',
+                    'Interview scheduling automation',
+                    'Candidate communication workflows',
+                    'Analytics and hiring metrics'
+                ],
+                technologies: ['LangChain', 'OpenAI', 'Angular', 'Supabase', 'TypeScript', 'Python'],
+                myRole: 'AI/ML Engineer',
+                responsibilities: [
+                    'Integrated LangChain for resume analysis',
+                    'Developed skill matching algorithms',
+                    'Built candidate ranking system',
+                    'Implemented automation workflows',
+                    'Reduced hiring time to 7 days'
+                ]
+            },
+            'employee-training': {
+                title: 'Smart Learning Management System',
+                badge: 'EdTech',
+                description: 'AI-enhanced employee training with personalized learning paths, progress analytics, and certification management. 85% completion rate.',
+                metrics: [
+                    { value: '50K+', label: 'Learners' },
+                    { value: '85%', label: 'Completion Rate' },
+                    { value: '200+', label: 'Courses' }
+                ],
+                overview: 'A comprehensive learning management system with AI-powered personalized learning paths that adapt to individual learning styles and pace.',
+                features: [
+                    'AI-personalized learning paths',
+                    'Progress tracking and analytics',
+                    'Certification management',
+                    'Interactive course content',
+                    'Skill assessment tools',
+                    'Gamification elements'
+                ],
+                technologies: ['Angular', 'Node.js', 'MongoDB', 'Python', 'Machine Learning', 'Firebase'],
+                myRole: 'Full Stack Developer',
+                responsibilities: [
+                    'Designed learning algorithms',
+                    'Built progress tracking system',
+                    'Developed certification module',
+                    'Optimized user engagement',
+                    'Achieved 85% completion rate'
+                ]
+            },
+            'recruitment-platform': {
+                title: 'Recruitment Platform',
+                badge: 'Staffing',
+                description: 'Hiring and recruitment platform for engineers and recruiters with modular frontend architecture.',
+                metrics: [
+                    { value: '5K+', label: 'Candidates' },
+                    { value: '120+', label: 'Clients' },
+                    { value: '35%', label: 'Time Saved' }
+                ],
+                overview: 'A recruiter-facing platform streamlining candidate sourcing, screening, and pipeline tracking with role-based access.',
+                features: [
+                    'Role-based recruiter and hiring manager views',
+                    'Candidate pipeline with status tracking',
+                    'Advanced search and filters',
+                    'Offer workflow and notifications'
+                ],
+                technologies: ['React', 'TypeScript', 'AWS', 'Node.js'],
+                myRole: 'Full Stack Engineer',
+                responsibilities: [
+                    'Built modular frontend architecture in React',
+                    'Implemented candidate search and filters',
+                    'Integrated offer workflow notifications',
+                    'Optimized rendering for large candidate lists'
+                ]
+            },
+            'hrms': {
+                title: 'HR Management System',
+                badge: 'Enterprise',
+                description: 'Human Resource Management System for managing employee lifecycle, timesheets, leave, and payroll with workflow automation.',
+                metrics: [
+                    { value: '10K+', label: 'Employees' },
+                    { value: '50%', label: 'Manual Work Reduced' },
+                    { value: '99.9%', label: 'Uptime' }
+                ],
+                overview: 'An end-to-end HRMS covering onboarding, leave, payroll, and compliance with automated approvals.',
+                features: [
+                    'Employee onboarding and lifecycle',
+                    'Leave and attendance management',
+                    'Payroll calculations and exports',
+                    'Approval workflows with notifications'
+                ],
+                technologies: ['Angular', 'FastAPI', 'MySQL', 'Node.js'],
+                myRole: 'Full Stack Engineer',
+                responsibilities: [
+                    'Built Angular modules for leave and payroll',
+                    'Integrated FastAPI services for HR workflows',
+                    'Implemented approval flow and notifications',
+                    'Improved performance for high-volume orgs'
+                ]
+            },
+            'quick-commerce': {
+                title: 'Quick Commerce App',
+                badge: 'Mobile',
+                description: 'Hyperlocal quick-commerce delivery app for Android and iOS built with Ionic and Angular, featuring dynamic CMS integration.',
+                metrics: [
+                    { value: '1M+', label: 'Orders' },
+                    { value: '8 min', label: 'Avg Delivery ETA' },
+                    { value: '25%', label: 'Conversion Lift' }
+                ],
+                overview: 'A hyperlocal delivery experience with real-time inventory, routing, and CMS-driven merchandising for mobile users.',
+                features: [
+                    'Real-time inventory and ETA',
+                    'Dynamic CMS-driven banners and promos',
+                    'Order tracking with live status',
+                    'Push notifications and offers'
+                ],
+                technologies: ['Ionic', 'Angular', 'Firebase', 'TypeScript'],
+                myRole: 'Mobile Engineer',
+                responsibilities: [
+                    'Developed Ionic Angular mobile app',
+                    'Integrated real-time order tracking',
+                    'Built CMS-driven content slots',
+                    'Optimized bundle and startup performance'
+                ]
+            }
+        };
+
+        function openProjectDetail(projectId) {
+            const project = projectsData[projectId];
+            if (!project) return;
+
+            const metricsHTML = project.metrics.map(m => `
+                <div class="metric-box">
+                    <div class="metric-value">${m.value}</div>
+                    <div class="metric-label">${m.label}</div>
+                </div>
+            `).join('');
+
+            const featuresHTML = project.features.map(f => `<li>${f}</li>`).join('');
+            const techHTML = project.technologies.map(t => `<span class="tech-stack-item">${t}</span>`).join('');
+            const responsibilitiesHTML = project.responsibilities.map(r => `<li>${r}</li>`).join('');
+
+            const content = `
+                <div class="project-detail-header">
+                    <span class="project-detail-badge">${project.badge}</span>
+                    <h2 class="project-detail-title">${project.title}</h2>
+                    <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;">${project.description}</p>
+                </div>
+
+                <div class="project-detail-section">
+                    <h3>📊 Key Metrics</h3>
+                    <div class="project-metrics">
+                        ${metricsHTML}
+                    </div>
+                </div>
+
+                <div class="project-detail-section">
+                    <h3>📝 Overview</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">${project.overview}</p>
+                </div>
+
+                <div class="project-detail-section">
+                    <h3>✨ Key Features</h3>
+                    <ul>${featuresHTML}</ul>
+                </div>
+
+                <div class="project-detail-section">
+                    <h3>💻 Technologies Used</h3>
+                    <div class="tech-stack-grid">
+                        ${techHTML}
+                    </div>
+                </div>
+
+                <div class="project-detail-section">
+                    <h3>👨‍💼 My Role: ${project.myRole}</h3>
+                    <ul>${responsibilitiesHTML}</ul>
+                </div>
+            `;
+
+            document.getElementById('projectDetailContent').innerHTML = content;
+            document.getElementById('projectModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectDetail() {
+            document.getElementById('projectModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProjectDetail();
+            }
+        });
+
+        // Mobile nav toggle
+        const nav = document.querySelector('nav');
+        const navToggle = document.querySelector('.nav-toggle');
+        navToggle?.addEventListener('click', () => {
+            nav.classList.toggle('open');
+            navToggle.classList.toggle('active');
+        });
+
+        // Close mobile nav on link click
+        document.querySelectorAll('nav ul a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('open');
+                navToggle?.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
