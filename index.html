@@ -233,7 +233,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 20%;
+            /* move focal point lower so more of the clothing/torso is visible */
+            object-position: center 58%;
+            /* zoom out a bit more to include more of the frame */
+            transform: scale(0.88);
+            transition: transform 250ms ease, object-position 250ms ease;
             display: block;
             margin: 0;
             padding: 0;
@@ -1094,60 +1098,49 @@
         }
 
         @media (max-width: 480px) {
-            nav {
-                padding: 0.8rem 1rem;
-            }
+            nav { padding: 0.7rem 1rem; }
 
-            nav ul {
-                display: none;
-            }
+            nav ul { display: none; }
 
-            .hero {
-                padding: 2rem 1rem;
-                margin-top: 50px;
-            }
+            .hero { padding: 2.2rem 0.9rem; margin-top: 56px; }
 
-            .hero h1 {
-                font-size: 1.8rem;
-            }
+            .hero h1 { font-size: 1.9rem; }
 
-            .hero-subtitle {
-                font-size: 0.95rem;
-            }
+            .hero-subtitle { font-size: 0.95rem; }
 
-            .section-header h2 {
-                font-size: 1.6rem;
-            }
+            .section-header h2 { font-size: 1.6rem; }
 
+            /* Make tech stack use a simple responsive grid so badges line up nicely */
             .tech-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 0.6rem;
+                align-items: center;
+                justify-items: center;
+            }
+
+            /* Ensure individual tech items/badges are centered and wrap cleanly */
+            .tech-item,
+            .tech-badge {
+                width: 100%;
+                max-width: 320px;
                 justify-content: center;
-                gap: 0.8rem;
+                text-align: center;
+                padding: 0.6rem 0.8rem;
             }
 
-            .tech-icon {
-                font-size: 2rem;
-            }
+            .tech-icon { width: 36px; height: 36px; }
+            .tech-name { font-size: 0.95rem; }
 
-            .tech-name {
-                font-size: 0.75rem;
-            }
+            .project-title { font-size: 1.05rem; }
+            .project-description { font-size: 0.9rem; }
+            .project-card { padding: 1rem; }
 
-            .project-title {
-                font-size: 1rem;
-            }
+            .tech-tag { white-space: normal; }
 
-            .project-description {
-                font-size: 0.9rem;
-            }
-
-            .project-card {
-                padding: 1.25rem;
-            }
-
-            .tech-tag {
-                font-size: 0.75rem;
-                padding: 0.35rem 0.75rem;
-            }
+            /* keep other mobile niceties */
+            .profile-photo { width: clamp(150px, 36vw, 190px); height: clamp(150px, 36vw, 190px); }
+            .btn { width: 100%; }
         }
 
         /* Modal Styles */
@@ -1781,8 +1774,10 @@
             <div class="cta-section">
                 <h3>🚀 Ready to Build AI-Driven Solutions?</h3>
                 <p>As a self-employed AI/ML developer, I'm open to new opportunities to integrate AI into business solutions. Whether you need intelligent chatbots, automated workflows, RAG systems, or custom ML models—I'm here to help startups and businesses leverage cutting-edge AI technologies. Let's discuss how AI can transform your operations.</p>
-                <button class="btn btn-primary" onclick="window.location.href='mailto:ravithakkar2990@gmail.com'">Get in Touch</button>
-                <button class="btn btn-primary" onclick="document.querySelector('#projects').scrollIntoView({behavior: 'smooth'})" style="background: rgba(0, 212, 255, 0.1); color: var(--accent-primary); box-shadow: none; border: 1px solid var(--accent-primary);">View My Work</button>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="window.location.href='mailto:ravithakkar2990@gmail.com'">Get in Touch</button>
+                    <button class="btn btn-primary" onclick="document.querySelector('#projects').scrollIntoView({behavior: 'smooth'})" style="background: rgba(0, 212, 255, 0.1); color: var(--accent-primary); box-shadow: none; border: 1px solid var(--accent-primary);">View My Work</button>
+                </div>
             </div>
         </div>
     </section>
@@ -1921,6 +1916,7 @@
                 ],
                 overview: 'A comprehensive learning management system with AI-powered personalized learning paths that adapt to individual learning styles and pace.',
                 features: [
+                   
                     'AI-personalized learning paths',
                     'Progress tracking and analytics',
                     'Certification management',
